@@ -29,4 +29,12 @@
     <string name="push_failed">Push failed: %1$s</string>
     <string name="files_in_zip">%1$d file(s) in zip</string>
     <string name="help_token">Create a token at github.com/settings/tokens with repo scope (or fine-grained access to the target repository).</string>
+    <string name="export_configs">Export</string>
+    <string name="import_configs">Import</string>
+    <string name="backup_warning">Export includes tokens in plain text. Keep the file private.</string>
+    <string name="export_ok">Configurations exported</string>
+    <string name="import_ok">Imported %1$d configuration(s)</string>
+    <string name="import_failed">Import failed: %1$s</string>
+    <string name="export_failed">Export failed: %1$s</string>
+    <string name="nothing_to_export">No configurations to export</string>
 </resources>
