@@ -75,12 +75,16 @@ class SharePushActivity : AppCompatActivity() {
         statusText.text = getString(R.string.unzipping)
         lifecycleScope.launch {
             try {
-                val n = PushPipeline.pushZip(this@SharePushActivity, uri, config, parsed) {
-                    statusText.text = it
-                }
-                zipInfo.text = getString(R.string.files_in_zip, n)
+                val result = PushPipeline.pushZip(
+                    this@SharePushActivity, uri, config, parsed
+                ) { statusText.text = it }
+                zipInfo.text = "Uploaded ${result.uploaded}, deleted ${result.deleted}"
                 statusText.text = getString(R.string.push_success)
-                Toast.makeText(this@SharePushActivity, R.string.push_success, Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    this@SharePushActivity,
+                    R.string.push_success,
+                    Toast.LENGTH_LONG
+                ).show()
             } catch (e: Exception) {
                 val msg = e.message ?: e.toString()
                 statusText.text = getString(R.string.push_failed, msg)
