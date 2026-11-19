@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GitHub Zip Pusher</string>
+    <string name="configs_title">Repository configurations</string>
+    <string name="add_config">Add configuration</string>
+    <string name="edit_config">Edit configuration</string>
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="name_label">Display name</string>
+    <string name="repo_url_label">Repository URL</string>
+    <string name="repo_url_hint">https://github.com/owner/repo</string>
+    <string name="branch_label">Branch</string>
+    <string name="branch_hint">main</string>
+    <string name="token_label">GitHub personal access token</string>
+    <string name="token_hint">ghp_… or github_pat_…</string>
+    <string name="path_prefix_label">Path prefix in repo (optional)</string>
+    <string name="path_prefix_hint">e.g. assets or leave empty for repo root</string>
+    <string name="commit_msg_label">Default commit message</string>
+    <string name="commit_msg_hint">Update files from zip</string>
+    <string name="empty_configs">No configurations yet.\nTap + to add a repository.</string>
+    <string name="choose_config_title">Choose repository configuration</string>
+    <string name="push">Commit and push</string>
+    <string name="pushing">Pushing…</string>
+    <string name="unzipping">Reading zip…</string>
+    <string name="no_zip">No zip file was provided.</string>
+    <string name="no_configs_for_share">Create at least one configuration before sharing a zip.</string>
+    <string name="push_success">Push completed successfully.</string>
+    <string name="push_failed">Push failed: %1$s</string>
+    <string name="files_in_zip">%1$d file(s) in zip</string>
+    <string name="help_token">Create a token at github.com/settings/tokens with repo scope (or fine-grained access to the target repository).</string>
+</resources>

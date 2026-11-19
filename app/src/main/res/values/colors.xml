@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="github_dark">#24292F</color>
+    <color name="github_green">#2DA44E</color>
+    <color name="github_bg">#F6F8FA</color>
+</resources>

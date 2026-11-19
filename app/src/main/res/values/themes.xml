@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.GitHubZipPusher" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">#24292F</item>
+        <item name="colorPrimaryVariant">#1B1F23</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorSecondary">#2DA44E</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="android:statusBarColor">#1B1F23</item>
+    </style>
+</resources>
