@@ -16,8 +16,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var adapter: ConfigListAdapter
     private lateinit var emptyView: TextView
 
-    override fun onCreate(savedInstanceedState: Bundle?) {
-        super.onCreate(savedInstanceedState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         store = ConfigStore(this)
         emptyView = findViewById(R.id.emptyView)
