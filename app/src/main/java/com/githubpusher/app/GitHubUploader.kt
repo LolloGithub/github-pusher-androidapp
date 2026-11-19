@@ -8,7 +8,7 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
 import java.util.concurrent.TimeUnit
 
-/** Uploads files via GitHub Contents API (one commit per file). */
+/** Create/update/delete files via GitHub Contents API (one commit per operation). */
 class GitHubUploader(
     private val token: String,
     private val owner: String,
@@ -41,7 +41,34 @@ class GitHubUploader(
         client.newCall(req).execute().use { resp ->
             val text = resp.body?.string().orEmpty()
             if (!resp.isSuccessful) {
-                throw RuntimeException("HTTP ${resp.code} for $path: ${text.take(400)}")
+                throw RuntimeException("HTTP ${resp.code} putting $path: ${text.take(400)}")
+            }
+        }
+    }
+
+    /**
+     * Deletes a file at [relativePath] (repo-root relative).
+     * No-op if the file does not exist (404).
+     */
+    fun deleteFile(relativePath: String, message: String) {
+        val path = relativePath.trimStart('/')
+        val sha = getExistingSha(path) ?: return
+        val body = JSONObject().apply {
+            put("message", message)
+            put("sha", sha)
+            put("branch", branch)
+        }
+        val req = Request.Builder()
+            .url("https://api.github.com/repos/$owner/$repo/contents/${enc(path)}")
+            .header("Authorization", "Bearer $token")
+            .header("Accept", "application/vnd.github+json")
+            .header("X-GitHub-Api-Version", "2022-11-28")
+            .delete(body.toString().toRequestBody(jsonType))
+            .build()
+        client.newCall(req).execute().use { resp ->
+            val text = resp.body?.string().orEmpty()
+            if (!resp.isSuccessful) {
+                throw RuntimeException("HTTP ${resp.code} deleting $path: ${text.take(400)}")
             }
         }
     }
@@ -60,7 +87,12 @@ class GitHubUploader(
             if (!resp.isSuccessful) {
                 throw RuntimeException("HTTP ${resp.code} reading $path: ${text.take(300)}")
             }
-            return JSONObject(text).optString("sha", null)
+            // Directories return an array; only files have a top-level sha string
+            return try {
+                JSONObject(text).optString("sha").takeIf { it.isNotBlank() }
+            } catch (_: Exception) {
+                null
+            }
         }
     }
 
